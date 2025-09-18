@@ -11,6 +11,7 @@ import study.data_jpa.entity.Team;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
@@ -138,5 +139,38 @@ class MemberRepositoryTest {
         for (Member member : result) {
             System.out.println("member = " + member);
         }
+    }
+
+    @Test
+    public void returnType() {
+//        Member m1 = new Member("AAA", 10);
+//        Member m2 = new Member("BBB", 20);
+//        memberRepository.save(m1);
+//        memberRepository.save(m2);
+
+//        List<Member> aaa = memberRepository.findListByUsername("AAA");
+
+//        Member member = memberRepository.findMemberByUsername("AAA");
+//        System.out.println("member = " + member);
+
+//        Optional<Member> member = memberRepository.findOptionalMemberByUsername("AAA");
+//        System.out.println("member = " + member.orElseThrow());
+
+//        List<Member> result = memberRepository.findListByUsername("asdf");
+//        System.out.println("result = " + result.size()); -> 없으면 empty list 반환
+
+//        Member member = memberRepository.findMemberByUsername("asdf");
+//        System.out.println("member = " + member); -> null 반환
+
+//        Optional<Member> member = memberRepository.findOptionalMemberByUsername("asdf");
+//        System.out.println("member = " + member); // -> Optional.empty 반환
+
+        Member m1 = new Member("AAA", 10);
+        Member m2 = new Member("AAA", 20);
+        memberRepository.save(m1);
+        memberRepository.save(m2);
+
+//        Optional<Member> member = memberRepository.findOptionalMemberByUsername("AAA");
+//        System.out.println("member = " + member); // -> List 아닌데 2개 이상 오면 exception 발생
     }
 }

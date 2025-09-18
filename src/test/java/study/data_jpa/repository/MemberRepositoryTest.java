@@ -78,4 +78,9 @@ class MemberRepositoryTest {
     public void findHelloBy() {
         List<Member> helloBy = memberRepository.findTop3HelloBy();
     }
+
+    @Test
+    public void findByUsername() {
+        List<Member> members = memberRepository.findByUsername("AAA");
+    }
 }

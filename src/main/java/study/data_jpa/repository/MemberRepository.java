@@ -4,6 +4,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import study.data_jpa.dto.MemberDto;
@@ -41,4 +42,12 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
     @Query(value = "select m from Member m left join m.team t", countQuery = "select count(m.username) from Member m")
     Page<Member> findByAge(int age, Pageable pageable);
 //    Slice<Member> findByAge(int age, Pageable pageable);
+
+    // Modifying: 변경함을 알려주는 코드
+    // clearAutomatically = 변경 후 자동으로 영속성 컨텍스트 클리어
+    // -> DB와 동기화 : 벌크 수정 시 DB에 바로 업데이트시켜 영속성 컨텍스트와 맞지 않기 때문
+    // 이외에도 MyBatis, JDBCTemplate 등과도 잘 맞지 않기에 그 이후에는 따로 em.flush, em.clear 필요
+    @Modifying(clearAutomatically = true)
+    @Query("update Member m set m.age = m.age + 1 where m.age >= :age")
+    int bulkAgePlus(@Param("age") int age);
 }

@@ -35,7 +35,7 @@ public class MemberController {
         return page.map(MemberDto::new);
     }
 
-    @PostConstruct
+//    @PostConstruct
     public void init() {
 //        memberRepository.save(new Member("memberA"));
         for (int i = 0; i < 100; i++) {

@@ -75,4 +75,11 @@ public interface MemberRepository
     //select for update
     @Lock(LockModeType.PESSIMISTIC_WRITE)
     List<Member> findLockByUsername(String username);
+
+//    List<UserNameOnly> findProjectionsByUsername(@Param("username") String username);
+
+//    List<UsernameOnlyDto> findProjectionsByUsername(@Param("username") String username);
+
+    <T> List<T> findProjectionsByUsername(@Param("username") String username, Class<T> type);
 }
+
